@@ -8,8 +8,6 @@ if (isset($_GET['id'])) {
     $row = $result->fetch_assoc();
 }
 
-
-
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
