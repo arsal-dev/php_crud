@@ -147,7 +147,7 @@ if (isset($_POST['submit'])) {
                         <td><?php echo $row['subject'] ?></td>
                         <td><?php echo $row['message'] ?></td>
                         <td><a href="./update.php?id=<?php echo $row['id'] ?>" class="btn btn-primary">Update</a></td>
-                        <td><button class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#deleteModal" id="<?php echo $row['id'] ?>">DELETE</button></td>
+                        <td><button class="btn btn-danger delete" data-bs-toggle="modal" data-bs-target="#deleteModal" pic="<?php echo $row['picture_name'] ?>" id="<?php echo $row['id'] ?>">DELETE</button></td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
@@ -168,7 +168,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="./delete.php?id=" class="btn btn-danger" id="dlt_yes">YES</a>
+                    <a href="" class="btn btn-danger" id="dlt_yes">YES</a>
                 </div>
             </div>
         </div>
