@@ -4,13 +4,13 @@ include('./db_connect.php');
 
 session_start();
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['id'])) {
     header('Location: login.php');
 }
 
+$user_id = $_SESSION['id'];
 
-
-$sql = "SELECT * FROM form_data";
+$sql = "SELECT * FROM form_data WHERE user_id = $user_id";
 $result = $conn->query($sql);
 
 $errors = [];
@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
 
                 move_uploaded_file($fileTempPath, $destination);
 
-                $sql = "INSERT INTO `form_data`(`name`, `email`, `subject`, `message`, `picture_name`) VALUES ('$name','$email','$subject','$message','$newFileName')";
+                $sql = "INSERT INTO `form_data`(`name`, `email`, `subject`, `message`, `picture_name`, `user_id`) VALUES ('$name','$email','$subject','$message','$newFileName', '$user_id')";
 
                 if ($conn->query($sql) == true) {
                     echo 'data saved successfully';
@@ -128,8 +128,8 @@ include './includes/header.php';
                 <th>ID</th>
                 <th>Img</th>
                 <th>Name</th>
-                <th>Subject</th>
                 <th>Email</th>
+                <th>Subject</th>
                 <th>Message</th>
                 <th>Action</th>
             </tr>

@@ -14,7 +14,10 @@ if (isset($_POST['submit'])) {
 
     $conn->query($sql);
 
-    echo 'login';
+    session_start();
+    $_SESSION['id'] = $conn->insert_id;
+
+    header('Location: index.php');
 }
 
 ?>

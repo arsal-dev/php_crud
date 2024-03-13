@@ -22,12 +22,12 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
-                    <?php if (!isset($_SESSION['email'])) : ?>
+                    <?php if (!isset($_SESSION['id'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="./signup.php">sign up</a>
                         </li>
                     <?php endif; ?>
-                    <?php if (isset($_SESSION['email'])) : ?>
+                    <?php if (isset($_SESSION['id'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="modal" data-bs-target="#logout">log out</a>
                         </li>

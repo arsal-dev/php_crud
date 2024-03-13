@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
     if ($error == false) {
 
-        $sql = "SELECT password FROM users WHERE email = '$email'";
+        $sql = "SELECT id, password FROM users WHERE email = '$email'";
 
         $result = $conn->query($sql);
 
@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
 
             if (password_verify($password, $db_password)) {
                 session_start();
-                $_SESSION['email'] = $email;
+                $_SESSION['id'] = $pass['id'];
 
                 header('Location: index.php');
             } else {
