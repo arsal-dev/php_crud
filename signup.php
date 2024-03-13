@@ -1,6 +1,5 @@
 <?php include './includes/header.php'; ?>
 
-
 <?php
 
 include './db_connect.php';

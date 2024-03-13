@@ -32,7 +32,10 @@ if (isset($_POST['submit'])) {
             $db_password = $pass['password'];
 
             if (password_verify($password, $db_password)) {
-                echo 'login';
+                session_start();
+                $_SESSION['email'] = $email;
+
+                header('Location: index.php');
             } else {
                 $errors['auth'] = 'email or passwrod is wrong';
             }
