@@ -1,0 +1,17 @@
+.form-container {
+    position: relative;
+}
+
+.spinner {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+}
+
+/* #spinnerBackground {
+    background-color: rgb(30, 30, 30);
+    width: 200px;
+    height: 200px;
+} */
