@@ -71,142 +71,54 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger modalDltBtn" data-bs-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-danger modalDltBtn" data-bs-dismiss="modal" onclick="dltData(this)">Delete</button>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    let insertForm = document.querySelector('#insertForm');
 
-    insertForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
+<!-- Update Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="update_form">
+                    <input type="hidden" id="up_id">
+                    <div class="form-group">
+                        <label for="up_name">Product Name</label>
+                        <input type="text" id="up_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="up_qty">Product Qty</label>
+                        <input type="text" id="up_qty" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="up_category">Product Category</label>
+                        <input type="text" id="up_category" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="up_price">Product Price</label>
+                        <input type="text" id="up_price" class="form-control">
+                    </div>
 
-        document.querySelector('.spinner').classList.remove('d-none');
+                    <input type="submit" data-bs-dismiss="modal" class="btn btn-primary mt-3">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-        let obj = {};
-
-        for (let i = 0; i < e.target.length; i++) {
-            if (e.target[i].name != 'submit') {
-                obj[e.target[i].name] = e.target[i].value;
-            }
-        }
-
-        let res = await fetch('api/create.php', {
-            method: 'POST',
-            body: JSON.stringify(obj)
-        });
-
-        res = await res.text();
-
-        res = JSON.parse(res);
-
-        document.querySelector('.spinner').classList.add('d-none');
-
-        for (let i = 0; i < e.target.length; i++) {
-            if (e.target[i].name != 'submit') {
-                e.target[i].value = '';
-            }
-        }
-
-        if (res.status == 400) {
-            alert(res.result);
-        } else {
-            document.querySelector('.alert').classList.remove('d-none');
-            showData();
-        }
-
-        // if (res.status == 200) {
-        //     alert(res.result);
-        // } else {
-        //     console.log(res.result)
-        // }
-
-        // second method
-        // JSON.parse | to decode json text
-
-        // let keys = [];
-        // let values = [];
-
-        // for (let input of e.target) {
-        //     keys.push(input.name);
-        //     values.push(input.value);
-        // }
-
-        // let obj = {};
-        // for (let i = 0; i < keys.length; i++) {
-        //     obj[keys[i]] = values[i];
-        // }
-    });
-
-
-
-    async function showData() {
-        document.querySelector('#readData').innerHTML = "";
-        let res = await fetch('./api/read.php');
-        res = await res.json();
-
-        for (let data of res) {
-            let tr = document.createElement('tr');
-            for (let key in data) {
-                let td = document.createElement('td');
-                td.innerText = data[key];
-                tr.append(td);
-            }
-
-            let btnTd = document.createElement('td');
-            let update = document.createElement('button');
-            update.classList.add('btn');
-            update.classList.add('btn-primary');
-            update.innerText = "update";
-
-            let dlt = document.createElement('button');
-            dlt.classList.add('btn');
-            dlt.classList.add('btn-danger');
-            dlt.classList.add('dlt-data');
-            dlt.innerText = "delete";
-            dlt.setAttribute('data-bs-toggle', 'modal');
-            dlt.setAttribute('data-bs-target', '#deleteModal');
-            btnTd.append(update, dlt);
-
-            tr.append(btnTd);
-
-            document.querySelector('#readData').append(tr);
-
-            deleteModal();
-        }
-    }
-
-    window.addEventListener('load', async function() {
-        showData()
-    });
-
-
-    function deleteModal() {
-        let dltData = document.querySelectorAll('.dlt-data');
-
-        for (let dltBtn of dltData) {
-            dltBtn.addEventListener('click', function() {
-                let id = this.parentElement.parentElement.children[0].innerText;
-
-                let dltModalBtn = document.querySelector('.modalDltBtn').id = id;
-
-                document.querySelector('.modalDltBtn').addEventListener('click', async function() {
-                    let res = await fetch('./api/delete.php', {
-                        method: 'POST',
-                        body: id
-                    });
-
-                    res = await res.json();
-
-                    if (res.status == 200) {
-                        showData();
-                    }
-                });
-            });
-        }
-    }
-</script>
+<script src="./assets/insert.js"></script>
+<script src="./assets/read.js"></script>
+<script src="./assets/delete.js"></script>
+<script src="./assets/update.js"></script>
 
 <?php include './includes/footer.php' ?>
