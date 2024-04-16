@@ -57,3 +57,20 @@
 
         * Create a ShoppingCart class to manage products and implement methods to add, remove, and display items in the cart along with their total cost (including tax).
      -->
+
+
+
+<!-- 
+      ___Zoo Management System:___
+      Task: Define an interface called Animal with methods eat() and makeSound(). Implement this interface for animals like Lion, Elephant, and Monkey. This mirrors a zoo management system where various animals have different eating habits and sounds.
+      -->
+
+<!-- 
+        ___Simple Calculator Application:___
+        Task: Define an interface called Calculator with methods add(), subtract(), multiply(), and divide(). Implement this interface for a basic calculator class. This task mimics a simple calculator application where users perform arithmetic operations using various methods.
+       -->
+
+<!-- 
+        __E-commerce Platform with Multiple Payment Gateways:__
+        Task: Design an interface called PaymentGateway with methods like processPayment() and refund(). Implement this interface for payment gateways like PayPal, Stripe, and Square. Additionally, introduce a class called PaymentProcessor that accepts an instance of the PaymentGateway interface in its constructor. This PaymentProcessor class should have methods like checkout() and issueRefund() that utilize the methods of the provided PaymentGateway instance. This scenario simulates an e-commerce platform where users can choose from multiple payment gateways for their transactions, and the system processes payments and refunds accordingly.
+      -->
